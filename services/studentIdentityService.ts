@@ -9,6 +9,7 @@ export interface Student {
   wallet: string | null;
   attendance: number;
   eligible: boolean | null;
+    department?: string;
   created_at?: string;
   updated_at?: string;
 }
