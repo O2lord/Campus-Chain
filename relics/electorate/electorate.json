@@ -1,0 +1,557 @@
+{
+  "address": "AQf2TBGA4qb8SVAKYUvamqsLCgU5Q65jyhWmgQudTVgo",
+  "metadata": {
+    "name": "electorate",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "cast_vote",
+      "discriminator": [
+        20,
+        212,
+        15,
+        189,
+        69,
+        180,
+        69,
+        151
+      ],
+      "accounts": [
+        {
+          "name": "poll",
+          "writable": true
+        },
+        {
+          "name": "voter",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "votes",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "VoteChoice"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "declare_results",
+      "discriminator": [
+        144,
+        1,
+        27,
+        248,
+        166,
+        4,
+        11,
+        229
+      ],
+      "accounts": [
+        {
+          "name": "poll",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "relations": [
+            "poll"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "end_voting",
+      "discriminator": [
+        161,
+        71,
+        151,
+        11,
+        247,
+        132,
+        219,
+        142
+      ],
+      "accounts": [
+        {
+          "name": "poll",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_poll",
+      "discriminator": [
+        193,
+        22,
+        99,
+        197,
+        18,
+        33,
+        115,
+        117
+      ],
+      "accounts": [
+        {
+          "name": "poll",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  108,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              },
+              {
+                "kind": "arg",
+                "path": "poll_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "poll_id",
+          "type": "u64"
+        },
+        {
+          "name": "poll_type",
+          "type": {
+            "defined": {
+              "name": "PollType"
+            }
+          }
+        },
+        {
+          "name": "class_name",
+          "type": {
+            "option": "string"
+          }
+        },
+        {
+          "name": "department_name",
+          "type": {
+            "option": "string"
+          }
+        },
+        {
+          "name": "start_time",
+          "type": "i64"
+        },
+        {
+          "name": "end_time",
+          "type": "i64"
+        },
+        {
+          "name": "positions",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "ElectionPosition"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Poll",
+      "discriminator": [
+        110,
+        234,
+        167,
+        188,
+        231,
+        136,
+        153,
+        111
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "TooManyCandidates",
+      "msg": "Too many candidates provided. Maximum is 5."
+    },
+    {
+      "code": 6001,
+      "name": "NoCandidates",
+      "msg": "No candidates provided."
+    },
+    {
+      "code": 6002,
+      "name": "InvalidTimeRange",
+      "msg": "Invalid time range. Start time must be before end time."
+    },
+    {
+      "code": 6003,
+      "name": "EndTimeInPast",
+      "msg": "End time cannot be in the past."
+    },
+    {
+      "code": 6004,
+      "name": "VotingNotStarted",
+      "msg": "Voting has not started yet."
+    },
+    {
+      "code": 6005,
+      "name": "VotingEnded",
+      "msg": "Voting has already ended."
+    },
+    {
+      "code": 6006,
+      "name": "AlreadyVoted",
+      "msg": "You have already voted in this poll."
+    },
+    {
+      "code": 6007,
+      "name": "InvalidCandidateIndex",
+      "msg": "Invalid candidate index."
+    },
+    {
+      "code": 6008,
+      "name": "VotingStillActive",
+      "msg": "Voting is still active."
+    },
+    {
+      "code": 6009,
+      "name": "VotingNotEnded",
+      "msg": "Voting has not ended yet."
+    },
+    {
+      "code": 6010,
+      "name": "TooManyPositions",
+      "msg": "Too many positions (max 10)"
+    },
+    {
+      "code": 6011,
+      "name": "NoPositions",
+      "msg": "No positions provided"
+    },
+    {
+      "code": 6012,
+      "name": "InvalidPositionIndex",
+      "msg": "Invalid position index"
+    },
+    {
+      "code": 6013,
+      "name": "EmptyPositionName",
+      "msg": "Position name cannot be empty"
+    },
+    {
+      "code": 6014,
+      "name": "DuplicatePositionName",
+      "msg": "Duplicate position name"
+    },
+    {
+      "code": 6015,
+      "name": "InvalidMaxSelections",
+      "msg": "Invalid max selections for position"
+    },
+    {
+      "code": 6016,
+      "name": "NoVotesProvided",
+      "msg": "No votes provided"
+    },
+    {
+      "code": 6017,
+      "name": "TooManyVoteChoices",
+      "msg": "Too many vote choices"
+    },
+    {
+      "code": 6018,
+      "name": "DuplicatePositionVote",
+      "msg": "Cannot vote for the same position twice"
+    },
+    {
+      "code": 6019,
+      "name": "NoCandidatesSelected",
+      "msg": "No candidates selected for position"
+    },
+    {
+      "code": 6020,
+      "name": "TooManyCandidatesSelected",
+      "msg": "Too many candidates selected for this position"
+    },
+    {
+      "code": 6021,
+      "name": "DuplicateCandidateSelection",
+      "msg": "Cannot select the same candidate twice"
+    },
+    {
+      "code": 6022,
+      "name": "TooManyCandidatesPerPosition",
+      "msg": "Too many candidates (max 5 per position)"
+    },
+    {
+      "code": 6023,
+      "name": "NoCandidatesInPosition",
+      "msg": "No candidates provided for position"
+    },
+    {
+      "code": 6024,
+      "name": "InvalidPollTypeParameters",
+      "msg": "Invalid Poll type param"
+    },
+    {
+      "code": 6025,
+      "name": "EmptyClassName",
+      "msg": "Class name is Empty"
+    },
+    {
+      "code": 6026,
+      "name": "EmptyDepartmentName",
+      "msg": "Department name is Empty"
+    }
+  ],
+  "types": [
+    {
+      "name": "Candidate",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "department",
+            "type": "string"
+          },
+          {
+            "name": "motto",
+            "type": "string"
+          },
+          {
+            "name": "vote_count",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ElectionPosition",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "candidates",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "Candidate"
+                }
+              }
+            }
+          },
+          {
+            "name": "max_selections",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Poll",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "poll_id",
+            "type": "u64"
+          },
+          {
+            "name": "poll_type",
+            "type": {
+              "defined": {
+                "name": "PollType"
+              }
+            }
+          },
+          {
+            "name": "start_time",
+            "type": "i64"
+          },
+          {
+            "name": "end_time",
+            "type": "i64"
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "PollStatus"
+              }
+            }
+          },
+          {
+            "name": "positions",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "ElectionPosition"
+                }
+              }
+            }
+          },
+          {
+            "name": "total_votes",
+            "type": "u64"
+          },
+          {
+            "name": "voters",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "winners",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "Winner"
+                }
+              }
+            }
+          },
+          {
+            "name": "class_name",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "department_name",
+            "type": {
+              "option": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "PollStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Upcoming"
+          },
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Ended"
+          },
+          {
+            "name": "ResultsDeclared"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PollType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Class"
+          },
+          {
+            "name": "Departmental"
+          },
+          {
+            "name": "SUG"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VoteChoice",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "position_index",
+            "type": "u32"
+          },
+          {
+            "name": "candidate_indices",
+            "type": {
+              "vec": "u32"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Winner",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "position",
+            "type": "string"
+          },
+          {
+            "name": "candidate_indices",
+            "type": {
+              "vec": "u32"
+            }
+          },
+          {
+            "name": "vote_count",
+            "type": "u64"
+          },
+          {
+            "name": "is_tie",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ]
+}

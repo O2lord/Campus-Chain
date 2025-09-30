@@ -1,0 +1,1360 @@
+{
+  "address": "gC5RCa5qR38FqfKKZBuKFVioerJqFANHnS5Uu66oDMP",
+  "metadata": {
+    "name": "swift_pay",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "cancel_or_reduce_buy_order",
+      "discriminator": [
+        212,
+        68,
+        226,
+        170,
+        186,
+        51,
+        83,
+        18
+      ],
+      "accounts": [
+        {
+          "name": "buyer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "swift_pay",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  119,
+                  105,
+                  102,
+                  116,
+                  45,
+                  112,
+                  97,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "swift_pay.maker",
+                "account": "SwiftPay"
+              },
+              {
+                "kind": "account",
+                "path": "swift_pay.seed",
+                "account": "SwiftPay"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "new_amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "confirm_payout",
+      "discriminator": [
+        148,
+        97,
+        145,
+        2,
+        85,
+        139,
+        4,
+        140
+      ],
+      "accounts": [
+        {
+          "name": "swift_pay",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  119,
+                  105,
+                  102,
+                  116,
+                  45,
+                  112,
+                  97,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "swift_pay.maker",
+                "account": "SwiftPay"
+              },
+              {
+                "kind": "account",
+                "path": "swift_pay.seed",
+                "account": "SwiftPay"
+              }
+            ]
+          }
+        },
+        {
+          "name": "bot_authority",
+          "signer": true
+        },
+        {
+          "name": "maker"
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "swift_pay_ata",
+          "writable": true
+        },
+        {
+          "name": "fee_destination_ata"
+        },
+        {
+          "name": "taker_ata"
+        },
+        {
+          "name": "maker_ata"
+        },
+        {
+          "name": "token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "taker",
+          "type": "pubkey"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "fiat_amount",
+          "type": "u64"
+        },
+        {
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "name": "payout_reference",
+          "type": "string"
+        },
+        {
+          "name": "success",
+          "type": "bool"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "create_buy_order",
+      "discriminator": [
+        182,
+        87,
+        0,
+        160,
+        192,
+        66,
+        151,
+        130
+      ],
+      "accounts": [
+        {
+          "name": "buyer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "swift_pay",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  119,
+                  105,
+                  102,
+                  116,
+                  45,
+                  112,
+                  97,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "buyer"
+              },
+              {
+                "kind": "arg",
+                "path": "seed"
+              }
+            ]
+          }
+        },
+        {
+          "name": "global_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  45,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "seed",
+          "type": "u64"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "price_per_token",
+          "type": "u64"
+        },
+        {
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "name": "payment_instructions",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "initialize_global_state",
+      "discriminator": [
+        232,
+        254,
+        209,
+        244,
+        123,
+        89,
+        154,
+        207
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "global_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  45,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "instant_reserve",
+      "discriminator": [
+        49,
+        131,
+        230,
+        138,
+        27,
+        60,
+        108,
+        209
+      ],
+      "accounts": [
+        {
+          "name": "swift_pay",
+          "writable": true
+        },
+        {
+          "name": "maker",
+          "relations": [
+            "swift_pay"
+          ]
+        },
+        {
+          "name": "taker",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "taker_ata",
+          "writable": true
+        },
+        {
+          "name": "swift_pay_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "swift_pay"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "fiat_amount",
+          "type": "u64"
+        },
+        {
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "name": "payout_details",
+          "type": {
+            "option": "string"
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_price",
+      "discriminator": [
+        61,
+        34,
+        117,
+        155,
+        75,
+        34,
+        123,
+        208
+      ],
+      "accounts": [
+        {
+          "name": "maker",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "swift_pay"
+          ]
+        },
+        {
+          "name": "swift_pay",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  119,
+                  105,
+                  102,
+                  116,
+                  45,
+                  112,
+                  97,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "maker"
+              },
+              {
+                "kind": "account",
+                "path": "swift_pay.seed",
+                "account": "SwiftPay"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "new_price_per_token",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "GlobalState",
+      "discriminator": [
+        163,
+        46,
+        74,
+        168,
+        216,
+        123,
+        133,
+        98
+      ]
+    },
+    {
+      "name": "SwiftPay",
+      "discriminator": [
+        81,
+        251,
+        203,
+        243,
+        129,
+        60,
+        135,
+        244
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "BuyOrderCancelledEvent",
+      "discriminator": [
+        118,
+        145,
+        69,
+        220,
+        68,
+        112,
+        48,
+        144
+      ]
+    },
+    {
+      "name": "BuyOrderCreatedEvent",
+      "discriminator": [
+        158,
+        4,
+        42,
+        74,
+        250,
+        125,
+        66,
+        173
+      ]
+    },
+    {
+      "name": "BuyOrderReducedEvent",
+      "discriminator": [
+        250,
+        72,
+        155,
+        121,
+        173,
+        162,
+        112,
+        178
+      ]
+    },
+    {
+      "name": "ExpressCloseFailedEvent",
+      "discriminator": [
+        28,
+        91,
+        60,
+        34,
+        32,
+        87,
+        79,
+        77
+      ]
+    },
+    {
+      "name": "InstantPaymentPayoutQueuedEvent",
+      "discriminator": [
+        126,
+        74,
+        232,
+        24,
+        151,
+        193,
+        25,
+        55
+      ]
+    },
+    {
+      "name": "InstantPaymentPayoutResultEvent",
+      "discriminator": [
+        114,
+        61,
+        126,
+        78,
+        83,
+        230,
+        103,
+        231
+      ]
+    },
+    {
+      "name": "InstantPaymentReservedEvent",
+      "discriminator": [
+        1,
+        110,
+        251,
+        231,
+        168,
+        10,
+        216,
+        190
+      ]
+    },
+    {
+      "name": "PriceUpdatedEvent",
+      "discriminator": [
+        217,
+        171,
+        222,
+        24,
+        64,
+        152,
+        217,
+        36
+      ]
+    },
+    {
+      "name": "SwiftPayNearlyEmptyEvent",
+      "discriminator": [
+        19,
+        84,
+        63,
+        37,
+        189,
+        10,
+        204,
+        78
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "CustomError",
+      "msg": "Custom error message"
+    },
+    {
+      "code": 6001,
+      "name": "InsufficientFunds",
+      "msg": "The requested withdrawal amount exceeds the swift pay balance."
+    },
+    {
+      "code": 6002,
+      "name": "InvalidWithdrawAmount",
+      "msg": "The withdrawal amount is invalid."
+    },
+    {
+      "code": 6003,
+      "name": "InvalidAmount",
+      "msg": "Invalid amount specified."
+    },
+    {
+      "code": 6004,
+      "name": "InvalidPrice",
+      "msg": "Invalid price specified."
+    },
+    {
+      "code": 6005,
+      "name": "InvalidCurrency",
+      "msg": "Currency code must be exactly 3 characters."
+    },
+    {
+      "code": 6006,
+      "name": "PaymentInstructionsTooLong",
+      "msg": "Payment instructions must be 100 characters or less."
+    },
+    {
+      "code": 6007,
+      "name": "ActiveReservationsExist",
+      "msg": "There is an active reservation."
+    },
+    {
+      "code": 6008,
+      "name": "MissingMakerAta",
+      "msg": "Maker's associated token account is missing."
+    },
+    {
+      "code": 6009,
+      "name": "CannotReduceBelowReserved",
+      "msg": "The reservation amount is invalid."
+    },
+    {
+      "code": 6010,
+      "name": "InsufficientTokens",
+      "msg": "Insufficient tokens available in the swift pay."
+    },
+    {
+      "code": 6011,
+      "name": "CalculationError",
+      "msg": "Calculation error occurred."
+    },
+    {
+      "code": 6012,
+      "name": "InvalidReservationIndex",
+      "msg": "Invalid reservation index."
+    },
+    {
+      "code": 6013,
+      "name": "InvalidMaker",
+      "msg": "Invalid maker."
+    },
+    {
+      "code": 6014,
+      "name": "Unauthorized",
+      "msg": "You are not authorized to perform this action."
+    },
+    {
+      "code": 6015,
+      "name": "ReservationNotPending",
+      "msg": "Reservation is not in pending status."
+    },
+    {
+      "code": 6016,
+      "name": "InvalidMint",
+      "msg": "Mint is not invalid."
+    },
+    {
+      "code": 6017,
+      "name": "ArithmeticOverflow",
+      "msg": "Arithemetic overflow."
+    },
+    {
+      "code": 6018,
+      "name": "InvalidTaker",
+      "msg": "Invalid taker for this reservation."
+    },
+    {
+      "code": 6019,
+      "name": "InvalidFeeDestination",
+      "msg": "Invalid fee destination for this reservation."
+    },
+    {
+      "code": 6020,
+      "name": "InvalidProgramId",
+      "msg": "Invalid program ID ."
+    },
+    {
+      "code": 6021,
+      "name": "InvalidComment",
+      "msg": "Invalid comment."
+    },
+    {
+      "code": 6022,
+      "name": "InvalidResolution",
+      "msg": "Invalid resolution status."
+    },
+    {
+      "code": 6023,
+      "name": "PendingReservationsExist",
+      "msg": "Cannot withdraw funds with pending reservations."
+    },
+    {
+      "code": 6024,
+      "name": "CannotDisputeCompletedTransaction",
+      "msg": "Cannot dispute a completed or cancelled transaction"
+    },
+    {
+      "code": 6025,
+      "name": "UnauthorizedDisputer",
+      "msg": "Only the maker or taker can dispute a transaction"
+    },
+    {
+      "code": 6026,
+      "name": "UnauthorizedResolver",
+      "msg": "Only an authorized resolver can resolve a dispute"
+    },
+    {
+      "code": 6027,
+      "name": "NotDisputed",
+      "msg": "Transaction is not in disputed status"
+    },
+    {
+      "code": 6028,
+      "name": "InvalidPaymentInstructions",
+      "msg": "No payment instructions provided"
+    },
+    {
+      "code": 6029,
+      "name": "TooManyReservations",
+      "msg": "Too many active reservations for this swift pay."
+    },
+    {
+      "code": 6030,
+      "name": "InvalidSwiftPayType",
+      "msg": "Invalid swift pay type"
+    },
+    {
+      "code": 6031,
+      "name": "PaymentNotSent",
+      "msg": "Payment not sent"
+    },
+    {
+      "code": 6032,
+      "name": "ActiveTokenDepositsExist",
+      "msg": "There is an active token deposit"
+    },
+    {
+      "code": 6033,
+      "name": "NoUnreservedTokens",
+      "msg": "All buyer orders are filled"
+    },
+    {
+      "code": 6034,
+      "name": "ReservationNotFound",
+      "msg": "Reservation not found for the given taker and payout reference"
+    },
+    {
+      "code": 6035,
+      "name": "ReservationAlreadyProcessed",
+      "msg": "Reservation has already been processed and cannot be modified"
+    },
+    {
+      "code": 6036,
+      "name": "MissingFeeDestinationAta",
+      "msg": "Fee destination ATA is required when fee amount is greater than zero"
+    },
+    {
+      "code": 6037,
+      "name": "MissingTakerAtaForRefund",
+      "msg": "Taker ATA is required for refunds when payout fails"
+    },
+    {
+      "code": 6038,
+      "name": "InvalidMakerAtaAuthority",
+      "msg": "The provided maker ATA does not belong to the maker"
+    }
+  ],
+  "types": [
+    {
+      "name": "BuyOrderCancelledEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "swift_pay",
+            "type": "pubkey"
+          },
+          {
+            "name": "buyer",
+            "type": "pubkey"
+          },
+          {
+            "name": "original_amount",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BuyOrderCreatedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "swift_pay",
+            "type": "pubkey"
+          },
+          {
+            "name": "buyer",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "price_per_token",
+            "type": "u64"
+          },
+          {
+            "name": "currency",
+            "type": "string"
+          },
+          {
+            "name": "payment_instructions",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BuyOrderReducedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "swift_pay",
+            "type": "pubkey"
+          },
+          {
+            "name": "buyer",
+            "type": "pubkey"
+          },
+          {
+            "name": "original_amount",
+            "type": "u64"
+          },
+          {
+            "name": "new_amount",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExpressCloseFailedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "swift_pay",
+            "type": "pubkey"
+          },
+          {
+            "name": "maker",
+            "type": "pubkey"
+          },
+          {
+            "name": "remaining_amount",
+            "type": "u64"
+          },
+          {
+            "name": "error_code",
+            "type": "u32"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "reason",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GlobalState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "total_swift_pay_created",
+            "type": "u64"
+          },
+          {
+            "name": "total_swift_pay_closed",
+            "type": "u64"
+          },
+          {
+            "name": "total_confirmations",
+            "type": "u64"
+          },
+          {
+            "name": "fee_percentage",
+            "type": "u16"
+          },
+          {
+            "name": "fee_destination",
+            "type": "pubkey"
+          },
+          {
+            "name": "total_fees_collected",
+            "type": "u64"
+          },
+          {
+            "name": "total_disputes",
+            "type": "u64"
+          },
+          {
+            "name": "total_volume",
+            "type": "u64"
+          },
+          {
+            "name": "token_decimals",
+            "type": "u8"
+          },
+          {
+            "name": "high_watermark_volume",
+            "type": "u64"
+          },
+          {
+            "name": "last_volume_update",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InstantPaymentPayoutQueuedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "swift_pay",
+            "type": "pubkey"
+          },
+          {
+            "name": "taker",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "fiat_amount",
+            "type": "u64"
+          },
+          {
+            "name": "currency",
+            "type": "string"
+          },
+          {
+            "name": "payout_reference",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InstantPaymentPayoutResultEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "swift_pay",
+            "type": "pubkey"
+          },
+          {
+            "name": "taker",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "fiat_amount",
+            "type": "u64"
+          },
+          {
+            "name": "currency",
+            "type": "string"
+          },
+          {
+            "name": "payout_reference",
+            "type": "string"
+          },
+          {
+            "name": "success",
+            "type": "bool"
+          },
+          {
+            "name": "message",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InstantPaymentReservedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "swift_pay",
+            "type": "pubkey"
+          },
+          {
+            "name": "taker",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "fiat_amount",
+            "type": "u64"
+          },
+          {
+            "name": "currency",
+            "type": "string"
+          },
+          {
+            "name": "payout_details",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "payout_reference",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PriceUpdatedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "swift_pay",
+            "type": "pubkey"
+          },
+          {
+            "name": "maker",
+            "type": "pubkey"
+          },
+          {
+            "name": "old_price",
+            "type": "u64"
+          },
+          {
+            "name": "new_price",
+            "type": "u64"
+          },
+          {
+            "name": "currency",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ReservedAmount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "taker",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "fiat_amount",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "seller_instructions",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "status",
+            "type": "u8"
+          },
+          {
+            "name": "dispute_reason",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "dispute_id",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "payout_details",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "payout_reference",
+            "type": {
+              "option": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "SwiftPay",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "seed",
+            "type": "u64"
+          },
+          {
+            "name": "maker",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "currency",
+            "type": {
+              "array": [
+                "u8",
+                3
+              ]
+            }
+          },
+          {
+            "name": "escrow_type",
+            "type": "u8"
+          },
+          {
+            "name": "fee_percentage",
+            "type": "u16"
+          },
+          {
+            "name": "fee_destination",
+            "type": "pubkey"
+          },
+          {
+            "name": "reserved_fee",
+            "type": "u64"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "price_per_token",
+            "type": "u64"
+          },
+          {
+            "name": "payment_instructions",
+            "type": "string"
+          },
+          {
+            "name": "reserved_amounts",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "ReservedAmount"
+                }
+              }
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SwiftPayNearlyEmptyEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "swift_pay",
+            "type": "pubkey"
+          },
+          {
+            "name": "maker",
+            "type": "pubkey"
+          },
+          {
+            "name": "remaining_amount",
+            "type": "u64"
+          },
+          {
+            "name": "active_reservations",
+            "type": "u32"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "SEED",
+      "type": "string",
+      "value": "\"anchor\""
+    }
+  ]
+}

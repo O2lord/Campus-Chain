@@ -1,0 +1,1532 @@
+{
+  "address": "4H4ofPc8YbCmYHUdaKWz6imFVYBpxPdbcqJHmWf9BvvS",
+  "metadata": {
+    "name": "scholarship",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "approve_scholarship",
+      "discriminator": [
+        202,
+        220,
+        35,
+        215,
+        127,
+        216,
+        193,
+        107
+      ],
+      "accounts": [
+        {
+          "name": "lecturer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "scholarship"
+          ]
+        },
+        {
+          "name": "student",
+          "writable": true
+        },
+        {
+          "name": "scholarship",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  104,
+                  111,
+                  108,
+                  97,
+                  114,
+                  115,
+                  104,
+                  105,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lecturer"
+              },
+              {
+                "kind": "account",
+                "path": "scholarship.seed",
+                "account": "Scholarship"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "relations": [
+            "scholarship"
+          ]
+        },
+        {
+          "name": "scholarship_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "scholarship"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "student_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "student"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "global_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  45,
+                  115,
+                  99,
+                  104,
+                  111,
+                  108,
+                  97,
+                  114,
+                  115,
+                  104,
+                  105,
+                  112,
+                  45,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "request_index",
+          "type": "u8"
+        },
+        {
+          "name": "approved_amount",
+          "type": "u64"
+        },
+        {
+          "name": "lecturer_response",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "create_scholarship_pool",
+      "discriminator": [
+        76,
+        59,
+        152,
+        40,
+        243,
+        176,
+        7,
+        241
+      ],
+      "accounts": [
+        {
+          "name": "lecturer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "lecturer_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "lecturer"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "scholarship",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  104,
+                  111,
+                  108,
+                  97,
+                  114,
+                  115,
+                  104,
+                  105,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lecturer"
+              },
+              {
+                "kind": "arg",
+                "path": "seed"
+              }
+            ]
+          }
+        },
+        {
+          "name": "scholarship_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "scholarship"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "global_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  45,
+                  115,
+                  99,
+                  104,
+                  111,
+                  108,
+                  97,
+                  114,
+                  115,
+                  104,
+                  105,
+                  112,
+                  45,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "seed",
+          "type": "u64"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "scholarship_purpose",
+          "type": "string"
+        },
+        {
+          "name": "max_request_amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "reject_scholarship",
+      "discriminator": [
+        16,
+        230,
+        14,
+        5,
+        79,
+        118,
+        187,
+        255
+      ],
+      "accounts": [
+        {
+          "name": "lecturer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "scholarship"
+          ]
+        },
+        {
+          "name": "scholarship",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  104,
+                  111,
+                  108,
+                  97,
+                  114,
+                  115,
+                  104,
+                  105,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "scholarship.lecturer",
+                "account": "Scholarship"
+              },
+              {
+                "kind": "account",
+                "path": "scholarship.seed",
+                "account": "Scholarship"
+              }
+            ]
+          }
+        },
+        {
+          "name": "global_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  45,
+                  115,
+                  99,
+                  104,
+                  111,
+                  108,
+                  97,
+                  114,
+                  115,
+                  104,
+                  105,
+                  112,
+                  45,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "request_index",
+          "type": "u8"
+        },
+        {
+          "name": "lecturer_response",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "request_scholarship",
+      "discriminator": [
+        236,
+        113,
+        0,
+        3,
+        60,
+        247,
+        71,
+        144
+      ],
+      "accounts": [
+        {
+          "name": "student",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "lecturer",
+          "writable": true,
+          "relations": [
+            "scholarship"
+          ]
+        },
+        {
+          "name": "scholarship",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  104,
+                  111,
+                  108,
+                  97,
+                  114,
+                  115,
+                  104,
+                  105,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "scholarship.lecturer",
+                "account": "Scholarship"
+              },
+              {
+                "kind": "account",
+                "path": "scholarship.seed",
+                "account": "Scholarship"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "relations": [
+            "scholarship"
+          ]
+        },
+        {
+          "name": "student_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "student"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "scholarship_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "scholarship"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "scholarship_purpose",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "withdraw_funds",
+      "discriminator": [
+        241,
+        36,
+        29,
+        111,
+        208,
+        31,
+        104,
+        217
+      ],
+      "accounts": [
+        {
+          "name": "lecturer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "scholarship"
+          ]
+        },
+        {
+          "name": "mint",
+          "relations": [
+            "scholarship"
+          ]
+        },
+        {
+          "name": "scholarship",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  99,
+                  104,
+                  111,
+                  108,
+                  97,
+                  114,
+                  115,
+                  104,
+                  105,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lecturer"
+              },
+              {
+                "kind": "arg",
+                "path": "seed"
+              }
+            ]
+          }
+        },
+        {
+          "name": "scholarship_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "scholarship"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "lecturer_ata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "lecturer"
+              },
+              {
+                "kind": "account",
+                "path": "token_program"
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "global_state",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  108,
+                  111,
+                  98,
+                  97,
+                  108,
+                  45,
+                  115,
+                  99,
+                  104,
+                  111,
+                  108,
+                  97,
+                  114,
+                  115,
+                  104,
+                  105,
+                  112,
+                  45,
+                  115,
+                  116,
+                  97,
+                  116,
+                  101
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "seed",
+          "type": "u64"
+        },
+        {
+          "name": "withdraw_amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "GlobalScholarshipState",
+      "discriminator": [
+        221,
+        137,
+        50,
+        210,
+        55,
+        231,
+        147,
+        160
+      ]
+    },
+    {
+      "name": "Scholarship",
+      "discriminator": [
+        196,
+        226,
+        125,
+        113,
+        80,
+        96,
+        210,
+        129
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "PartialWithdrawalEvent",
+      "discriminator": [
+        145,
+        236,
+        133,
+        111,
+        56,
+        164,
+        255,
+        176
+      ]
+    },
+    {
+      "name": "ScholarshipApprovedEvent",
+      "discriminator": [
+        168,
+        248,
+        72,
+        195,
+        61,
+        163,
+        106,
+        60
+      ]
+    },
+    {
+      "name": "ScholarshipClosedEvent",
+      "discriminator": [
+        192,
+        116,
+        176,
+        254,
+        50,
+        192,
+        7,
+        15
+      ]
+    },
+    {
+      "name": "ScholarshipPoolCreatedEvent",
+      "discriminator": [
+        217,
+        93,
+        152,
+        122,
+        152,
+        170,
+        169,
+        74
+      ]
+    },
+    {
+      "name": "ScholarshipRejectedEvent",
+      "discriminator": [
+        116,
+        129,
+        78,
+        18,
+        216,
+        8,
+        67,
+        224
+      ]
+    },
+    {
+      "name": "ScholarshipRequestedEvent",
+      "discriminator": [
+        183,
+        102,
+        56,
+        46,
+        103,
+        55,
+        45,
+        7
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidAmount",
+      "msg": "Invalid amount specified"
+    },
+    {
+      "code": 6001,
+      "name": "EmptyPurpose",
+      "msg": "Scholarship purpose cannot be empty"
+    },
+    {
+      "code": 6002,
+      "name": "PurposeTooLong",
+      "msg": "Scholarship purpose is too long (max 300 characters)"
+    },
+    {
+      "code": 6003,
+      "name": "EmptyReason",
+      "msg": "Scholarship reason cannot be empty"
+    },
+    {
+      "code": 6004,
+      "name": "ReasonTooLong",
+      "msg": "Scholarship reason is too long (max 300 characters)"
+    },
+    {
+      "code": 6005,
+      "name": "EmptyResponse",
+      "msg": "Lecturer response cannot be empty"
+    },
+    {
+      "code": 6006,
+      "name": "ResponseTooLong",
+      "msg": "Lecturer response is too long (max 200 characters)"
+    },
+    {
+      "code": 6007,
+      "name": "TooManyRequests",
+      "msg": "Too many scholarship requests (max 100)"
+    },
+    {
+      "code": 6008,
+      "name": "PendingRequestExists",
+      "msg": "Student already has a pending request"
+    },
+    {
+      "code": 6009,
+      "name": "InsufficientFunds",
+      "msg": "Insufficient funds in scholarship pool"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidRequestIndex",
+      "msg": "Invalid request index"
+    },
+    {
+      "code": 6011,
+      "name": "RequestNotPending",
+      "msg": "Request is not in pending status"
+    },
+    {
+      "code": 6012,
+      "name": "InvalidStudent",
+      "msg": "Invalid student for this request"
+    },
+    {
+      "code": 6013,
+      "name": "Unauthorized",
+      "msg": "Unauthorized access"
+    },
+    {
+      "code": 6014,
+      "name": "CalculationError",
+      "msg": "Calculation error occurred"
+    },
+    {
+      "code": 6015,
+      "name": "InvalidMaxRequestAmount",
+      "msg": "Invalid max request amount. Must be greater than 0."
+    },
+    {
+      "code": 6016,
+      "name": "MaxRequestExceedsTotalAmount",
+      "msg": "Max request amount cannot exceed total scholarship amount."
+    },
+    {
+      "code": 6017,
+      "name": "ExceedsMaxRequestAmount",
+      "msg": "Requested amount exceeds the maximum allowed per student."
+    },
+    {
+      "code": 6018,
+      "name": "InvalidApprovedAmount",
+      "msg": "Invalid approved amount. Must be greater than 0."
+    },
+    {
+      "code": 6019,
+      "name": "ApprovedExceedsRequested",
+      "msg": "Approved amount cannot exceed the requested amount."
+    }
+  ],
+  "types": [
+    {
+      "name": "GlobalScholarshipState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "total_scholarships_created",
+            "type": "u64"
+          },
+          {
+            "name": "total_scholarships_closed",
+            "type": "u64"
+          },
+          {
+            "name": "total_requests_approved",
+            "type": "u64"
+          },
+          {
+            "name": "total_requests_rejected",
+            "type": "u64"
+          },
+          {
+            "name": "total_volume_disbursed",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PartialWithdrawalEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "scholarship",
+            "type": "pubkey"
+          },
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "withdraw_amount",
+            "type": "u64"
+          },
+          {
+            "name": "remaining_amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Scholarship",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "seed",
+            "type": "u64"
+          },
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "total_amount",
+            "type": "u64"
+          },
+          {
+            "name": "available_amount",
+            "type": "u64"
+          },
+          {
+            "name": "scholarship_purpose",
+            "type": "string"
+          },
+          {
+            "name": "scholarship_requests",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "ScholarshipRequest"
+                }
+              }
+            }
+          },
+          {
+            "name": "max_request_amount",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ScholarshipApprovedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "scholarship",
+            "type": "pubkey"
+          },
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "student",
+            "type": "pubkey"
+          },
+          {
+            "name": "requested_amount",
+            "type": "u64"
+          },
+          {
+            "name": "approved_amount",
+            "type": "u64"
+          },
+          {
+            "name": "lecturer_response",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ScholarshipClosedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "scholarship",
+            "type": "pubkey"
+          },
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "remaining_amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ScholarshipPoolCreatedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "scholarship",
+            "type": "pubkey"
+          },
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "max_request_amount",
+            "type": "u64"
+          },
+          {
+            "name": "purpose",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ScholarshipRejectedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "scholarship",
+            "type": "pubkey"
+          },
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "student",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "lecturer_response",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ScholarshipRequest",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "student",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "approved_amount",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "scholarship_reason",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "type": "u8"
+          },
+          {
+            "name": "lecturer_response",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ScholarshipRequestedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "scholarship",
+            "type": "pubkey"
+          },
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "student",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "reason",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "SEED",
+      "type": "string",
+      "value": "\"anchor\""
+    }
+  ]
+}

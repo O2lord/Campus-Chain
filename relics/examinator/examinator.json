@@ -1,0 +1,2031 @@
+{
+  "address": "AiLZhuUBYgr2ZkRZHDBscg15ifok5vEa1aeUyA6aJmoe",
+  "metadata": {
+    "name": "examinator",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "create_exam_metadata",
+      "discriminator": [
+        162,
+        38,
+        142,
+        195,
+        98,
+        194,
+        98,
+        75
+      ],
+      "accounts": [
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "exam_metadata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  97,
+                  109
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lecturer_profile"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_exam_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "lecturer_profile",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  101,
+                  99,
+                  116,
+                  117,
+                  114,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "lecturer_profile.supabase_id_hash",
+                "account": "LecturerProfile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_exam_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "config_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "start_ts",
+          "type": "i64"
+        },
+        {
+          "name": "end_ts",
+          "type": "i64"
+        },
+        {
+          "name": "published",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "create_lecturer_profile",
+      "discriminator": [
+        54,
+        75,
+        57,
+        168,
+        193,
+        10,
+        134,
+        124
+      ],
+      "accounts": [
+        {
+          "name": "lecturer_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  101,
+                  99,
+                  116,
+                  117,
+                  114,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_question_batch",
+      "discriminator": [
+        160,
+        118,
+        39,
+        122,
+        168,
+        232,
+        36,
+        26
+      ],
+      "accounts": [
+        {
+          "name": "question_batch",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  97,
+                  116,
+                  99,
+                  104
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lecturer_profile"
+              },
+              {
+                "kind": "arg",
+                "path": "batch_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "lecturer_profile",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  101,
+                  99,
+                  116,
+                  117,
+                  114,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "lecturer_profile.supabase_id_hash",
+                "account": "LecturerProfile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "batch_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "questions",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "QuestionBatchItem"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_question_metadata",
+      "discriminator": [
+        118,
+        223,
+        254,
+        99,
+        158,
+        156,
+        254,
+        211
+      ],
+      "accounts": [
+        {
+          "name": "question_metadata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  115,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lecturer_profile"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_question_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "lecturer_profile",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  101,
+                  99,
+                  116,
+                  117,
+                  114,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "lecturer_profile.supabase_id_hash",
+                "account": "LecturerProfile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_question_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "content_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "course_code_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_student_profile",
+      "discriminator": [
+        170,
+        78,
+        23,
+        229,
+        123,
+        10,
+        212,
+        46
+      ],
+      "accounts": [
+        {
+          "name": "student_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  116,
+                  117,
+                  100,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "finalize_student_score",
+      "discriminator": [
+        72,
+        218,
+        50,
+        47,
+        162,
+        228,
+        226,
+        207
+      ],
+      "accounts": [
+        {
+          "name": "student_attempt",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  116,
+                  116,
+                  101,
+                  109,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "student"
+              },
+              {
+                "kind": "account",
+                "path": "exam"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_attempt_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "student",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  116,
+                  117,
+                  100,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "student.authority",
+                "account": "StudentProfile"
+              },
+              {
+                "kind": "account",
+                "path": "student.supabase_id_hash",
+                "account": "StudentProfile"
+              }
+            ]
+          },
+          "relations": [
+            "student_attempt"
+          ]
+        },
+        {
+          "name": "exam",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  97,
+                  109
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lecturer"
+              },
+              {
+                "kind": "account",
+                "path": "exam.supabase_exam_id_hash",
+                "account": "ExamMetadata"
+              }
+            ]
+          },
+          "relations": [
+            "student_attempt"
+          ]
+        },
+        {
+          "name": "lecturer",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  101,
+                  99,
+                  116,
+                  117,
+                  114,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "lecturer.supabase_id_hash",
+                "account": "LecturerProfile"
+              }
+            ]
+          },
+          "relations": [
+            "exam"
+          ]
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_attempt_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "final_score",
+          "type": "u64"
+        },
+        {
+          "name": "max_possible_score",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "publish_exam",
+      "discriminator": [
+        242,
+        213,
+        19,
+        188,
+        204,
+        149,
+        129,
+        238
+      ],
+      "accounts": [
+        {
+          "name": "exam_metadata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  97,
+                  109
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lecturer"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_exam_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "lecturer",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  101,
+                  99,
+                  116,
+                  117,
+                  114,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "lecturer.supabase_id_hash",
+                "account": "LecturerProfile"
+              }
+            ]
+          },
+          "relations": [
+            "exam_metadata"
+          ]
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_exam_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "request_remark",
+      "discriminator": [
+        4,
+        242,
+        6,
+        137,
+        113,
+        89,
+        75,
+        21
+      ],
+      "accounts": [
+        {
+          "name": "student_attempt",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  116,
+                  116,
+                  101,
+                  109,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "student"
+              },
+              {
+                "kind": "account",
+                "path": "exam"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_attempt_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "student",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  116,
+                  117,
+                  100,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "student.supabase_id_hash",
+                "account": "StudentProfile"
+              }
+            ]
+          },
+          "relations": [
+            "student_attempt"
+          ]
+        },
+        {
+          "name": "exam",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  97,
+                  109
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "exam.lecturer",
+                "account": "ExamMetadata"
+              },
+              {
+                "kind": "account",
+                "path": "exam.supabase_exam_id_hash",
+                "account": "ExamMetadata"
+              }
+            ]
+          },
+          "relations": [
+            "student_attempt"
+          ]
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_attempt_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "reason_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "start_student_attempt",
+      "discriminator": [
+        151,
+        0,
+        181,
+        56,
+        122,
+        248,
+        24,
+        156
+      ],
+      "accounts": [
+        {
+          "name": "student_attempt",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  116,
+                  116,
+                  101,
+                  109,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "student_profile"
+              },
+              {
+                "kind": "account",
+                "path": "exam_metadata"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_attempt_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "student_profile",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  116,
+                  117,
+                  100,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "student_profile.supabase_id_hash",
+                "account": "StudentProfile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "exam_metadata",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  97,
+                  109
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "exam_metadata.lecturer",
+                "account": "ExamMetadata"
+              },
+              {
+                "kind": "account",
+                "path": "exam_metadata.supabase_exam_id_hash",
+                "account": "ExamMetadata"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_attempt_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "submit_student_answers",
+      "discriminator": [
+        184,
+        60,
+        27,
+        72,
+        54,
+        227,
+        246,
+        191
+      ],
+      "accounts": [
+        {
+          "name": "student_attempt",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  116,
+                  116,
+                  101,
+                  109,
+                  112,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "student"
+              },
+              {
+                "kind": "account",
+                "path": "exam"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_attempt_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "student",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  116,
+                  117,
+                  100,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "student.supabase_id_hash",
+                "account": "StudentProfile"
+              }
+            ]
+          },
+          "relations": [
+            "student_attempt"
+          ]
+        },
+        {
+          "name": "exam",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  97,
+                  109
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "exam.lecturer",
+                "account": "ExamMetadata"
+              },
+              {
+                "kind": "account",
+                "path": "exam.supabase_exam_id_hash",
+                "account": "ExamMetadata"
+              }
+            ]
+          },
+          "relations": [
+            "student_attempt"
+          ]
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_attempt_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "answers_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "unpublish_exam",
+      "discriminator": [
+        255,
+        248,
+        224,
+        120,
+        11,
+        47,
+        67,
+        127
+      ],
+      "accounts": [
+        {
+          "name": "exam_metadata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  97,
+                  109
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lecturer"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_exam_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "lecturer",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  101,
+                  99,
+                  116,
+                  117,
+                  114,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "lecturer.supabase_id_hash",
+                "account": "LecturerProfile"
+              }
+            ]
+          },
+          "relations": [
+            "exam_metadata"
+          ]
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_exam_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_exam_metadata",
+      "discriminator": [
+        214,
+        112,
+        147,
+        78,
+        67,
+        92,
+        183,
+        184
+      ],
+      "accounts": [
+        {
+          "name": "exam_metadata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  120,
+                  97,
+                  109
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lecturer"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_exam_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "lecturer",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  101,
+                  99,
+                  116,
+                  117,
+                  114,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "lecturer.supabase_id_hash",
+                "account": "LecturerProfile"
+              }
+            ]
+          },
+          "relations": [
+            "exam_metadata"
+          ]
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_exam_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "new_config_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "new_start_ts",
+          "type": "i64"
+        },
+        {
+          "name": "new_end_ts",
+          "type": "i64"
+        },
+        {
+          "name": "new_published",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "update_lecturer_profile",
+      "discriminator": [
+        187,
+        242,
+        74,
+        104,
+        114,
+        249,
+        236,
+        251
+      ],
+      "accounts": [
+        {
+          "name": "lecturer_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  101,
+                  99,
+                  116,
+                  117,
+                  114,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "new_supabase_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_question_metadata",
+      "discriminator": [
+        61,
+        67,
+        200,
+        189,
+        29,
+        173,
+        63,
+        72
+      ],
+      "accounts": [
+        {
+          "name": "question_metadata",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  113,
+                  117,
+                  101,
+                  115,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lecturer"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_question_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "lecturer",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  101,
+                  99,
+                  116,
+                  117,
+                  114,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "account",
+                "path": "lecturer.supabase_id_hash",
+                "account": "LecturerProfile"
+              }
+            ]
+          },
+          "relations": [
+            "question_metadata"
+          ]
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_question_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "new_content_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "new_course_code_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "update_student_profile",
+      "discriminator": [
+        85,
+        45,
+        63,
+        201,
+        102,
+        244,
+        150,
+        166
+      ],
+      "accounts": [
+        {
+          "name": "student_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  116,
+                  117,
+                  100,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "arg",
+                "path": "supabase_id_hash"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signer",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "supabase_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "new_supabase_id_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "ExamMetadata",
+      "discriminator": [
+        239,
+        172,
+        196,
+        21,
+        183,
+        235,
+        161,
+        100
+      ]
+    },
+    {
+      "name": "LecturerProfile",
+      "discriminator": [
+        56,
+        7,
+        222,
+        91,
+        159,
+        75,
+        22,
+        196
+      ]
+    },
+    {
+      "name": "QuestionBatch",
+      "discriminator": [
+        214,
+        207,
+        190,
+        2,
+        47,
+        25,
+        76,
+        134
+      ]
+    },
+    {
+      "name": "QuestionMetadata",
+      "discriminator": [
+        184,
+        63,
+        60,
+        43,
+        99,
+        148,
+        243,
+        179
+      ]
+    },
+    {
+      "name": "StudentAttempt",
+      "discriminator": [
+        136,
+        200,
+        102,
+        178,
+        39,
+        138,
+        119,
+        108
+      ]
+    },
+    {
+      "name": "StudentProfile",
+      "discriminator": [
+        185,
+        172,
+        160,
+        26,
+        178,
+        113,
+        216,
+        235
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "ExamPublishedEvent",
+      "discriminator": [
+        131,
+        251,
+        213,
+        3,
+        179,
+        7,
+        55,
+        71
+      ]
+    },
+    {
+      "name": "ExamUnpublishedEvent",
+      "discriminator": [
+        139,
+        252,
+        120,
+        163,
+        157,
+        43,
+        234,
+        107
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "Unauthorized"
+    }
+  ],
+  "types": [
+    {
+      "name": "AttemptStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "InProgress"
+          },
+          {
+            "name": "Submitted"
+          },
+          {
+            "name": "Graded"
+          },
+          {
+            "name": "RemarkRequested"
+          },
+          {
+            "name": "RemarkApproved"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExamMetadata",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "supabase_exam_id_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "config_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "start_ts",
+            "type": "i64"
+          },
+          {
+            "name": "end_ts",
+            "type": "i64"
+          },
+          {
+            "name": "published",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExamPublishedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "exam",
+            "type": "pubkey"
+          },
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "supabase_exam_id_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "published_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExamUnpublishedEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "exam",
+            "type": "pubkey"
+          },
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "supabase_exam_id_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "unpublished_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LecturerProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "supabase_id_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "QuestionBatch",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "batch_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "questions",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "QuestionBatchItem"
+                }
+              }
+            }
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "QuestionBatchItem",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "supabase_question_id_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "content_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "course_code_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "QuestionMetadata",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "lecturer",
+            "type": "pubkey"
+          },
+          {
+            "name": "supabase_question_id_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "content_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "course_code_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "StudentAttempt",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "student",
+            "type": "pubkey"
+          },
+          {
+            "name": "exam",
+            "type": "pubkey"
+          },
+          {
+            "name": "supabase_attempt_id_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "start_ts",
+            "type": "i64"
+          },
+          {
+            "name": "submit_ts",
+            "type": {
+              "option": "i64"
+            }
+          },
+          {
+            "name": "answers_hash",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          },
+          {
+            "name": "final_score",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "max_possible_score",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "AttemptStatus"
+              }
+            }
+          },
+          {
+            "name": "remark_reason_hash",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "StudentProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "supabase_id_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ]
+}
